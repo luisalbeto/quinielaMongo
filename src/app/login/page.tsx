@@ -1,6 +1,5 @@
 "use client";
 import { FormEvent, useState } from "react";
-import { AxiosError } from "axios";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -17,7 +16,7 @@ function Signin() {
       redirect: false,
     });
 
-    if (res?.error) setError(res.error as string);
+    if (res?.error) return setError(res.error as string);
 
     if (res?.ok) return router.push("/dashboard");
   };
