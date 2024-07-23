@@ -3,8 +3,8 @@ import { Logo } from "./Logo";
 
 
 const navItems = [
-  {path: '/dashboard', text: 'Home'},
-  {path: '/groups', text: 'Fase Final'},
+  {path: '/dashboard', text: 'Informacion'},
+  {path: '/groups', text: 'Quiniela'},
   {path: '/results', text: 'Resultados'},
   {path: '/ranking', text: 'Ranking'},
 ]

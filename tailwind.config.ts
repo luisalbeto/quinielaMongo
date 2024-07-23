@@ -25,7 +25,9 @@ const config: Config = {
       'wine': '#B30090',
       'lila': '#AE0BFF',
       'transparent': '#00000000',
-      'turquesa': '#00FF66'
+      'turquesa': '#00FF66',
+      'red': '#FF0000',
+      'gray': '	#808080'
     },
     extend: {
       backgroundImage: {

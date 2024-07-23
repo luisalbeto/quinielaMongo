@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export const Logo = () => {
   return (
-    <div className="cursor-pointer">
+    <Link href="/" className="cursor-pointer">
         <Image
       className="w-100 h-100"
       src="/copalogo.svg"  // Ruta relativa a la carpeta 'public'
@@ -12,7 +13,7 @@ export const Logo = () => {
 
     />
 
-    </div>
+    </Link>
   
   );
 };

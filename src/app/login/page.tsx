@@ -25,29 +25,29 @@ function Signin() {
     <div className="justify-center flex items-center">
       <form
         onSubmit={handleSubmit}
-        className="bg-neutral-950 px-8 py-10 w-full"
+        className="bg-purple px-8 py-10 w-full rounded"
       >
-        {error && <div className="bg-red-500 text-white p-2 mb-2">{error}</div>}
-        <h1 className="text-4xl font-bold mb-7">Signin</h1>
+        {error && <div className="bg-red text-black p-2 mb-2">{error}</div>}
+        <h1 className="text-4xl font-bold mb-7 text-white">Login</h1>
 
-        <label className="text-slate-300">Email:</label>
+        <label className="text-white">Email:</label>
         <input
           type="email"
           placeholder="Email"
-          className="bg-zinc-800 px-4 py-2 block mb-2 w-full"
+          className="bg-sky px-4 py-2 block mb-2 w-full rounded text-black"
           name="email"
         />
 
-        <label className="text-slate-300">Password:</label>
+        <label className="text-white">Password:</label>
         <input
           type="password"
           placeholder="Password"
-          className="bg-zinc-800 px-4 py-2 block mb-2 w-full"
+          className="bg-sky px-4 py-2 block mb-2 w-full rounded text-black"
           name="password"
         />
 
-        <button className="bg-blue-500 text-white px-4 py-2 block w-full mt-4">
-          Signup
+        <button className="bg-blue text-white px-4 py-2 block w-full mt-4 rounded">
+          Inicia Sesion
         </button>
       </form>
     </div>
