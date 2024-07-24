@@ -12,7 +12,7 @@ export default async function Page() {
         <h1 className="text-6xl font-bold text-black">Resultados</h1>
         <p className="mt-4 text-2xl text-black">Mira aqui los Resultados de la Copa America</p>       
         </section>
-        <MatchesResult/>
+        <MatchesResult matchDay={1}/>
         </main>
 
     )

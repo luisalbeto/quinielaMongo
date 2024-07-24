@@ -16,6 +16,8 @@ export const MatchesResult :FC<MatchesResultProps> = ({matchDay})=>{
             <Loading/>
         </div>
     }
+
+    console.log(data)
     return (
 
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex rounded-sm">
