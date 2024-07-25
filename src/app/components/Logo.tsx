@@ -5,7 +5,6 @@ export const Logo = () => {
   return (
     <Link href="/" className="cursor-pointer">
         <Image
-      className="w-100 h-100"
       src="/copalogo.svg"  // Ruta relativa a la carpeta 'public'
       alt="Logo"
       height={100}

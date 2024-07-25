@@ -7,6 +7,8 @@ const navItems = [
   {path: '/groups', text: 'Quiniela'},
   {path: '/results', text: 'Resultados'},
   {path: '/ranking', text: 'Ranking'},
+  {path: '/predictions', text: 'Mis Predicciones'},
+
 ]
 
 

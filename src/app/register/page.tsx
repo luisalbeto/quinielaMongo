@@ -3,6 +3,7 @@ import { FormEvent, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function Signup() {
   const [error, setError] = useState();
@@ -35,8 +36,8 @@ function Signup() {
   };
 
   return (
-    <div className="justify-center flex items-center">
-      <form onSubmit={handleSubmit} className="bg-purple px-8 py-10 w-full rounded">
+    <div className="justify-center flex flex-col items-center">
+      <form onSubmit={handleSubmit} className="bg-purple px-8 py-10 w-full rounded mb-4">
         {error && <div className="bg-red rounded text-black p-2 mb-2">{error}</div>}
         <h1 className="text-4xl font-bold mb-7 text-white">Registro</h1>
 
@@ -59,7 +60,7 @@ function Signup() {
         <label className="text-white">Password:</label>
         <input
           type="password"
-          placeholder="Password"
+          placeholder="******"
           className="bg-sky px-4 py-2 block mb-2 w-full rounded text-black"
           name="password"
         />
@@ -68,6 +69,14 @@ function Signup() {
           Registrate
         </button>
       </form>
+      <div className="justify-center flex flex-col items-center w-full">
+    <p className="text-black">Ya Tienes una Cuenta?</p>
+    <button className="bg-blue text-white px-4 py-2 block w-full rounded">
+      <Link href='/login'>
+      Inicia Sesión
+      </Link>
+    </button>
+  </div>
     </div>
   );
 }

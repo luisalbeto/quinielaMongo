@@ -2,15 +2,11 @@
 import React, {FC} from 'react';
 import {Match} from "@/app/types/contanst.type";
 
-
-
 export interface MatchResultProps{
   match:Match
 }
 
 const MatchResult :FC<MatchResultProps>= ({ match }) => {
-  
-
   return (
 <div className="bg-blue/80 shadow-md p-4 flex flex-col items-center gap-4 rounded mt-4 md:flex-row justify-between md:items-center md:gap-8">
   <div className="match-info flex flex-col md:flex-row md:items-center md:justify-between py-4 px-4 w-full">
@@ -19,7 +15,7 @@ const MatchResult :FC<MatchResultProps>= ({ match }) => {
       <span className="team-name text-black font-bold mr-4">{match.team1}</span>
     </div>
     <div className="match-score text-black font-bold text-2xl flex-1 flex items-center justify-center md:justify-self-center md:order-2">
-      {match.score1 ? (
+      {match ? (
         <div>
           <span>{match.score1}</span>
           <span className="mx-2">-</span>
@@ -38,9 +34,6 @@ const MatchResult :FC<MatchResultProps>= ({ match }) => {
     <span>{match.date}</span>
   </div>
 </div>
-
-  
-   
   );
 };
 
