@@ -2,7 +2,11 @@ import React from "react";
 import UsersList from "./components/UserRanking";
 
 
+
+
 export default async function Page() {
+
+
 	return (
 		<div>
 			<div className="container mx-auto px-4">			

@@ -2,6 +2,7 @@
 
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {Match, MatchApi, RootApiResponse} from "@/app/types/contanst.type";
+
 export interface FlagTeam{
     country: string,
     nameImage:string
