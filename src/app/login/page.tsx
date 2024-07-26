@@ -23,7 +23,8 @@ function Signin() {
     if (res?.error) {
       setError(res.error);
     } else if (res?.ok) {
-      router.replace("/dashboard"); // Use replace instead of push
+      console.log(res)
+      router.push("/dashboard"); 
     }
   };
 

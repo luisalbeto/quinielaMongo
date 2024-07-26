@@ -13,7 +13,7 @@ function Signup() {
     event.preventDefault();
     try {
       const formData = new FormData(event.currentTarget);
-      const signupResponse = await axios.post("/api/auth/singup", {
+      const signupResponse = await axios.post("/api/auth/signup", {
         email: formData.get("email"),
         password: formData.get("password"),
         fullname: formData.get("fullname"),
