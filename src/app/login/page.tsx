@@ -1,5 +1,4 @@
 "use client";
-
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -24,8 +23,7 @@ function Signin() {
     if (res?.error) {
       setError(res.error);
     } else if (res?.ok) {
-      // Use `router.replace` to avoid pushing to the history stack
-      router.replace("/dashboard");
+      router.replace("/dashboard"); // Use replace instead of push
     }
   };
 
@@ -33,7 +31,7 @@ function Signin() {
     <div className="justify-center flex flex-col items-center">
       <form
         onSubmit={handleSubmit}
-        className="bg-purple px-8 py-10 w-full rounded mb-4" // Añadir margen inferior
+        className="bg-purple px-8 py-10 w-full rounded mb-4"
       >
         {error && <div className="bg-red text-black p-2 mb-2">{error}</div>}
         <h1 className="text-4xl font-bold mb-7 text-white">Inicia Sesión</h1>
