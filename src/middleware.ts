@@ -8,6 +8,8 @@ const secret = process.env.NEXTAUTH_SECRET;
 export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret });
 
+  console.log('Token:', token); // Agrega esta línea para depuración
+
   // Definir las rutas protegidas
   const protectedRoutes = ['/dashboard', '/results', '/ranking', '/groups', '/predictions'];
 
@@ -16,6 +18,7 @@ export async function middleware(req: NextRequest) {
 
   // Redirigir si no hay token en una ruta protegida
   if (isProtectedRoute && !token) {
+    console.log('Redirecting to /login'); // Agrega esta línea para depuración
     return NextResponse.redirect(new URL('/login', req.url));
   }
 
@@ -24,5 +27,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/gropus/:path*', '/results/:path*', '/ranking/:path*', '/predictions/:path*'],
+  matcher: ['/dashboard/:path*', '/groups/:path*', '/results/:path*', '/ranking/:path*', '/predictions/:path*'],
 };
