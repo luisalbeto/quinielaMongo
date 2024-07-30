@@ -8,8 +8,14 @@ import axios from 'axios';
 import { useSession } from 'next-auth/react';
 
 const PredictionsSchema = Yup.object().shape({
-  scoreLocalteam: Yup.number().required('Score for local team is required').min(0, 'Score must be at least 0'),
-  scoreAwayteam: Yup.number().required('Score for away team is required').min(0, 'Score must be at least 0'),
+  scoreLocalteam: Yup.number()
+    .required('Score for local team is required')
+    .min(0, 'Score must be at least 0')
+    .integer('Score must be an integer'), 
+  scoreAwayteam: Yup.number()
+    .required('Score for away team is required')
+    .min(0, 'Score must be at least 0')
+    .integer('Score must be an integer'), 
   localteam: Yup.string().required('Local team is required'),
   awayteam: Yup.string().required('Away team is required'),
 });
@@ -46,6 +52,13 @@ const MatchPrediction: FC<MatchPredictionProps> = ({ match }) => {
 
     checkPrediction();
   }, [session, match]);
+
+  const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>, setFieldValue: (field: string, value: number) => void) => {
+    const value = Number(e.target.value);
+    if (!isNaN(value) && value >= 0) {
+      setFieldValue(e.target.name, value);
+    }
+  };
 
   const onSubmit = async (data: Omit<Yup.InferType<typeof PredictionsSchema>, 'userId'>, actions: any) => {
     if (!session || !session.user) {
@@ -102,21 +115,31 @@ const MatchPrediction: FC<MatchPredictionProps> = ({ match }) => {
             validationSchema={PredictionsSchema}
             onSubmit={onSubmit}
           >
-            {({ errors, touched }) => (
+            {({ errors, touched, setFieldValue }) => (
               <Form>
                 <div className="scoreboard flex flex-col justify-center items-center gap-4">
                   <div className="flex justify-center items-center gap-4">
-                    <div className="team-score bg-green-500 text-black py-2 rounded-lg font-bold text-xl flex flex-col items-center border-lg">
-                      <Field name="scoreLocalteam" type="number" className="w-1/3 text-center rounded-full" disabled={predictionExists} />
+                    <div className="team-score bg-green/50 text-black py-2 rounded-lg font-bold text-xl flex flex-col items-center border-lg">
+                      <Field
+                        name="scoreLocalteam"
+                        type="number"
+                        className="w-1/3 text-center rounded-full"
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleNumberChange(e, setFieldValue)}
+                      />
                       {errors.scoreLocalteam && touched.scoreLocalteam ? (
-                        <div className="error-message text-red-500 text-xs mt-1">{errors.scoreLocalteam}</div>
+                        <div className="error-message text-red text-xs mt-1">{errors.scoreLocalteam}</div>
                       ) : null}
                     </div>
                     <div className="vs text-black font-bold text-2xl flex items-center">VS</div>
-                    <div className="team-score bg-sky-500 text-black py-2 rounded-lg font-bold text-xl flex flex-col items-center">
-                      <Field name="scoreAwayteam" type="number" className="w-1/3 text-center rounded-full" disabled={predictionExists} />
+                    <div className="team-score bg-green/50 text-black py-2 rounded-lg font-bold text-xl flex flex-col items-center">
+                      <Field
+                        name="scoreAwayteam"
+                        type="number"
+                        className="w-1/3 text-center rounded-full"
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleNumberChange(e, setFieldValue)}
+                      />
                       {errors.scoreAwayteam && touched.scoreAwayteam ? (
-                        <div className="error-message text-red-500 text-xs mt-1">{errors.scoreAwayteam}</div>
+                        <div className="error-message text-red text-xs mt-1">{errors.scoreAwayteam}</div>
                       ) : null}
                     </div>
                   </div>

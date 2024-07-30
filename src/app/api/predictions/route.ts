@@ -1,6 +1,5 @@
 // /pages/api/predictions.ts
-import { NextResponse } from 'next/server';  // Importar NextResponse para Next.js 13+
-
+import { NextResponse } from 'next/server';  
 import {connectDB} from '@/libs/mongodb';
 import Prediction from '@/models/predictions';
 
