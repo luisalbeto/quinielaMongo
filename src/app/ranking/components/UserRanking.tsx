@@ -8,7 +8,7 @@ interface User {
   _id: string;
   fullname: string;
   email: string;
-  score: number; // Añadido campo de puntuación
+  score: number; 
 }
 
 interface Prediction {

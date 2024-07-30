@@ -10,7 +10,6 @@ export default function Dashboard() {
         <h1 className="text-6xl font-bold text-black">¡Copa América USA 2024!</h1>
         <p className="mt-4 text-2xl text-black">El torneo de fútbol más antiguo del mundo</p>
       </section>
-      {/* Historical Paragraphs */}
       <section className="mt-8">
         <h2 className="text-4xl font-semibold text-black">Historia de la Copa América</h2>
         <p className="mt-4 text-2xl text-black">

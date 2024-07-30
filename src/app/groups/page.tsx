@@ -12,9 +12,17 @@ export default async function Page() {
         <h1 className="text-6xl font-bold text-black">Predicciones</h1>
         <p className="mt-4 text-2xl text-black">Predice los resultados de la Copa y finje sorpresa</p>       
         </section>
+        <h1 className="text-6xl font-bold text-black">Final</h1>
+
         <MatchesPrediction matchDay={1}/>
+        <h1 className="text-6xl font-bold text-black">3er Lugar</h1>
+
         <MatchesPrediction matchDay={2}/>
+        <h1 className="text-6xl font-bold text-black">Semifinales</h1>
+       
         <MatchesPrediction matchDay={3}/>
+        <h1 className="text-6xl font-bold text-black">Cuartos de Final</h1>
+
         <MatchesPrediction matchDay={4}/>
         </main>
     )
