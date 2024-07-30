@@ -1,5 +1,6 @@
-'use client'
-import React, { FC } from 'react';
+'use client';
+
+import React, { FC, useEffect, useState } from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { Match } from '@/app/types/contanst.type';
@@ -19,8 +20,33 @@ interface MatchPredictionProps {
 
 const MatchPrediction: FC<MatchPredictionProps> = ({ match }) => {
   const { data: session } = useSession();
+  const [predictionExists, setPredictionExists] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  // Función para manejar el envío del formulario
+  useEffect(() => {
+    const checkPrediction = async () => {
+      if (!session || !session.user) {
+        console.error('No user session found');
+        setLoading(false);
+        return;
+      }
+
+      const userId = (session.user as any)._id;
+      try {
+        const response = await axios.get('/api/scores', {
+          params: { userId, localteam: match.team1, awayteam: match.team2 },
+        });
+        setPredictionExists(response.data.exists);
+      } catch (error) {
+        console.error('Error checking prediction:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkPrediction();
+  }, [session, match]);
+
   const onSubmit = async (data: Omit<Yup.InferType<typeof PredictionsSchema>, 'userId'>, actions: any) => {
     if (!session || !session.user) {
       console.error('No user session found');
@@ -30,14 +56,12 @@ const MatchPrediction: FC<MatchPredictionProps> = ({ match }) => {
     }
 
     const userId = (session.user as any)._id;
-    console.log(userId); // Asegúrate de que el userId esté disponible en la sesión
-
-    const payload = { 
+    const payload = {
       userId,
-      localteam: data.localteam, 
-      awayteam: data.awayteam, 
-      scoreLocalteam: data.scoreLocalteam, 
-      scoreAwayteam: data.scoreAwayteam 
+      localteam: data.localteam,
+      awayteam: data.awayteam,
+      scoreLocalteam: data.scoreLocalteam,
+      scoreAwayteam: data.scoreAwayteam,
     };
 
     try {
@@ -48,8 +72,8 @@ const MatchPrediction: FC<MatchPredictionProps> = ({ match }) => {
       });
 
       if (response.status === 200) {
-        console.log(response.data.message);
         alert('Marcadores guardados exitosamente');
+        setPredictionExists(true);
       } else {
         throw new Error('Error al guardar los marcadores');
       }
@@ -83,14 +107,14 @@ const MatchPrediction: FC<MatchPredictionProps> = ({ match }) => {
                 <div className="scoreboard flex flex-col justify-center items-center gap-4">
                   <div className="flex justify-center items-center gap-4">
                     <div className="team-score bg-green-500 text-black py-2 rounded-lg font-bold text-xl flex flex-col items-center border-lg">
-                      <Field name="scoreLocalteam" type="number" className="w-1/3 text-center rounded-full" />
+                      <Field name="scoreLocalteam" type="number" className="w-1/3 text-center rounded-full" disabled={predictionExists} />
                       {errors.scoreLocalteam && touched.scoreLocalteam ? (
                         <div className="error-message text-red-500 text-xs mt-1">{errors.scoreLocalteam}</div>
                       ) : null}
                     </div>
                     <div className="vs text-black font-bold text-2xl flex items-center">VS</div>
                     <div className="team-score bg-sky-500 text-black py-2 rounded-lg font-bold text-xl flex flex-col items-center">
-                      <Field name="scoreAwayteam" type="number" className="w-1/3 text-center rounded-full" />
+                      <Field name="scoreAwayteam" type="number" className="w-1/3 text-center rounded-full" disabled={predictionExists} />
                       {errors.scoreAwayteam && touched.scoreAwayteam ? (
                         <div className="error-message text-red-500 text-xs mt-1">{errors.scoreAwayteam}</div>
                       ) : null}
@@ -98,8 +122,8 @@ const MatchPrediction: FC<MatchPredictionProps> = ({ match }) => {
                   </div>
                 </div>
                 <div className="submit-button flex justify-center items-center mt-4">
-                  <button type="submit" className="bg-sky text-purple hover:bg-blue hover:text-white transition-colors px-4 py-2 rounded-lg font-bold">
-                    Enviar
+                  <button type="submit" className="bg-sky text-purple hover:bg-blue hover:text-white transition-colors px-4 py-2 rounded-lg font-bold" disabled={predictionExists || loading}>
+                    {predictionExists ? 'Predicción Guardada' : 'Enviar'}
                   </button>
                 </div>
               </Form>
