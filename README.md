@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Proyecto Quiniela Next.js + MongoDB
+Este repositorio contiene una aplicación construida con Next.js y MongoDB. A continuación, encontrarás instrucciones para instalar y ejecutar la aplicación en tu entorno local.
 
-## Getting Started
+Requisitos Previos
+Antes de comenzar, asegúrate de tener instalado lo siguiente en tu máquina:
 
-First, run the development server:
+Node.js (versión 14.x o superior)
+MongoDB (instalado localmente o acceso a una base de datos en la nube)
+npm (administrador de paquetes)
+Instalación
+Clona el repositorio:
 
-```bash
+bash
+git clone https://github.com/luisalbeto/quinielaMongo.git
+Navega al directorio del proyecto:
+
+bash
+cd tu-repositorio
+Instala las dependencias:
+
+bash
+npm install
+
+Configura las variables de entorno:
+
+Copialas en el archivo de ejemplo de variables de entorno y renómbralo:
+
+.env.example a .env
+
+Luego, abre el archivo .env y configura las variables necesarias. Asegúrate de incluir tu URI de conexión a MongoDB. Ejemplo:
+
+MONGODB_URI="mongodb://localhost:27017/tu-base-de-datos"
+NEXTAUTH_SECRET="examplesecrettoken21902u129012u981"
+
+Inicia la base de datos MongoDB:
+
+Asegúrate de que MongoDB esté en ejecución. Puedes iniciar el servidor MongoDB con:
+
+bash
+mongod
+
+Ejecutar la Aplicación
+Para ejecutar la aplicación en modo de desarrollo, usa uno de los siguientes comandos:
+
+Con npm:
+
+bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+La aplicación estará disponible en http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Construir y Desplegar
+Para construir la aplicación para producción, usa:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Con npm:
 
-## Learn More
+bash
+npm run build
 
-To learn more about Next.js, take a look at the following resources:
+Luego, para iniciar el servidor de producción, usa:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Con npm:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+bash
+npm start
